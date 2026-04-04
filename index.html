@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joseph Joo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --surface: #f3f1ee;
+      --border: #e4e0da;
+      --text: #1a1916;
+      --muted: #8a8680;
+      --accent: #2a5cff;
+      --display: 'Times New Roman', Times, serif;
+      --body: 'DM Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(250,249,247,0.94);
+      backdrop-filter: blur(8px);
+      border-color: var(--border);
+    }
+    .nav-name {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    section {
+      padding: 6rem 2rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: rise 0.7s 0.1s forwards;
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: rise 0.7s 0.25s forwards;
+    }
+    h1 em { font-style: italic; color: var(--muted); }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 440px;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: rise 0.7s 0.4s forwards;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: rise 0.7s 0.55s forwards;
+    }
+    .btn {
+      padding: 0.65rem 1.5rem;
+      font-family: var(--body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: opacity 0.2s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-dark { background: var(--text); color: var(--bg); }
+    .btn-outline {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      animation: rise 0.7s 1s forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 36px;
+      background: var(--border);
+      animation: scrollpulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollpulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    h2 {
+      font-family: var(--display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .section-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
+
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.85;
+    }
+    .about-text p + p { margin-top: 1rem; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .about-meta {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .meta-link {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s;
+    }
+    .meta-link:hover { color: var(--accent); }
+    .meta-link svg { width: 14px; height: 14px; }
+
+    .skills-table { display: flex; flex-direction: column; }
+    .skill-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-row:first-child { border-top: 1px solid var(--border); }
+    .skill-cat { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 2px; }
+    .skill-items { font-size: 0.88rem; color: var(--text); font-weight: 300; line-height: 1.8; }
+
+    .projects-list { display: flex; flex-direction: column; }
+    .project-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+      align-items: start;
+    }
+    .project-item:first-child { border-top: 1px solid var(--border); }
+    .project-item:hover { opacity: 0.55; }
+    .project-type { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .project-name { font-family: var(--display); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.35rem; }
+    .project-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.65; }
+    .project-stack { margin-top: 0.6rem; font-size: 0.75rem; color: var(--muted); }
+    .project-arrow { font-size: 1rem; color: var(--border); transition: color 0.2s; padding-top: 4px; }
+    .project-item:hover .project-arrow { color: var(--text); }
+
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-period { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+    .exp-company { font-family: var(--display); font-size: 1.05rem; font-weight: 400; margin-bottom: 0.15rem; }
+    .exp-role { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .exp-bullets {
+      padding-left: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .exp-bullets li + li { margin-top: 0.3rem; }
+
+    #contact { text-align: center; padding-bottom: 8rem; }
+    .contact-sub { font-size: 0.95rem; color: var(--muted); font-weight: 300; margin-bottom: 2rem; line-height: 1.7; }
+    .contact-email {
+      display: inline-block;
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-email:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; }
+    .contact-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .contact-links a:hover { color: var(--text); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    footer p { font-size: 0.72rem; color: var(--muted); }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
+    }
+    .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 600px) {
+      .skill-row, .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="#hero" class="nav-name">Joseph Joo</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-eyebrow">Software Engineer · ML & Data Science</div>
+    <h1>Hi, I'm<br /><em>Joseph Joo.</em></h1>
+    <p class="hero-desc">I build reliable software and machine learning systems, from data pipelines to the models and APIs on top of them.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-dark">View projects</a>
+      <a href="/resume.pdf" class="btn btn-outline">Resume</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-header fade">
+      <span class="section-num">01</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-text fade">
+      <p>I'm a <strong>software, ML, and data engineer</strong> with experience building systems combining data, models, and real products. I care about writing code that's maintainable, shipping things that are observable, and solving problems that matter.</p>
+      <p>Currently interning at <strong>KCC Capital Partners.</strong> Previously at <strong>Semicon Bio </strong>. I studied <strong>Data Science</strong> at the <strong>University of California, Berkeley</strong>.</p>
+    </div>
+    <div class="about-meta fade">
+      <a href="https://github.com/josephhjoo" class="meta-link" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/joseph-j-joo" class="meta-link" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="/resume.pdf" class="meta-link">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+        Resume
+      </a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-header fade">
+      <span class="section-num">02</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-table fade">
+      <div class="skill-row"><div class="skill-cat">Languages</div><div class="skill-items">Python, TypeScript, SQL, Go, Bash</div></div>
+      <div class="skill-row"><div class="skill-cat">ML / AI</div><div class="skill-items">PyTorch, HuggingFace, scikit-learn, LangChain, ONNX</div></div>
+      <div class="skill-row"><div class="skill-cat">Data</div><div class="skill-items">Spark, dbt, Airflow, Pandas, Postgres</div></div>
+      <div class="skill-row"><div class="skill-cat">Infrastructure</div><div class="skill-items">AWS, Docker, Kubernetes, Terraform, GitHub Actions</div></div>
+      <div class="skill-row"><div class="skill-cat">Backend</div><div class="skill-items">FastAPI, Node.js, REST, gRPC, Redis</div></div>
+      <div class="skill-row"><div class="skill-cat">MLOps</div><div class="skill-items">MLflow, Weights & Biases, Triton, Prometheus</div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-header fade">
+      <span class="section-num">03</span>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects-list fade">
+      <a href="https://github.com/yourusername/project-one" class="project-item" target="_blank" rel="noopener">
+        <div>
+          <div class="project-type">ML System · Featured</div>
+          <div class="project-name">Project One — Your Best Work</div>
+          <div class="project-desc">What it does and why it matters. Focus on impact — e.g. "Reduced inference latency 60% by replacing a batch job with a streaming pipeline serving 1M+ requests/day."</div>
+          <div class="project-stack">PyTorch · FastAPI · AWS · Redis</div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+      <a href="https://github.com/yourusername/project-two" class="project-item" target="_blank" rel="noopener">
+        <div>
+          <div class="project-type">NLP · Open Source</div>
+          <div class="project-name">Project Two</div>
+          <div class="project-desc">Brief description — the interesting technical challenge and the outcome.</div>
+          <div class="project-stack">HuggingFace · Python · Docker</div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+      <a href="https://github.com/yourusername/project-three" class="project-item" target="_blank" rel="noopener">
+        <div>
+          <div class="project-type">Software Engineering</div>
+          <div class="project-name">Project Three</div>
+          <div class="project-desc">Brief description emphasizing scale, technical decisions, or something that shows depth.</div>
+          <div class="project-stack">Go · Postgres · Kubernetes</div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-header fade">
+      <span class="section-num">04</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-list fade">
+      <div class="exp-item">
+        <div class="exp-period">Jan 2023<br />Present</div>
+        <div>
+          <div class="exp-company">Company Name</div>
+          <div class="exp-role">Software / ML Engineer</div>
+          <ul class="exp-bullets">
+            <li>Led development of X system, reducing latency by N% and saving $Y/month in compute.</li>
+            <li>Built and deployed a model doing Z, serving N requests/day with 99.9% uptime.</li>
+            <li>Improved data pipeline reliability, reducing incidents by N%.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-period">Jun 2021<br />Dec 2022</div>
+        <div>
+          <div class="exp-company">Previous Company</div>
+          <div class="exp-role">Software Engineer</div>
+          <ul class="exp-bullets">
+            <li>Owned backend for X feature, used by N users.</li>
+            <li>Refactored data pipeline, cutting processing time from N hours to M minutes.</li>
+            <li>Mentored 2 junior engineers, led design reviews.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-period">Sep 2019<br />May 2021</div>
+        <div>
+          <div class="exp-company">University / Research Lab</div>
+          <div class="exp-role">Research Assistant</div>
+          <ul class="exp-bullets">
+            <li>Researched [topic], contributed to [paper or repo].</li>
+            <li>Implemented X model, achieving Y% on Z benchmark.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-header fade" style="border: none; padding-bottom: 0; justify-content: center; margin-bottom: 1rem;">
+      <h2>Get in touch</h2>
+    </div>
+    <p class="contact-sub fade">Open to full-time roles in ML engineering and software engineering.<br />Happy to talk about interesting problems too.</p>
+    <a href="mailto:josephjoo@berkeley.edu" class="contact-email fade">josephjoo@berkeley.edu</a>
+    <div class="contact-links fade">
+      <a href="https://github.com/josephhjoo" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/joseph-j-joo" target="_blank">LinkedIn</a>
+      <a href="/resume.pdf">Resume</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Joseph Joo</p>
+    <p>josephhjoo.github.io</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>

@@ -16,10 +16,10 @@
       --display: 'Times New Roman', Times, serif;
       --body: 'DM Sans', sans-serif;
     }
-
+ 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
+ 
     body {
       background: var(--bg);
       color: var(--text);
@@ -27,7 +27,7 @@
       font-size: 15px;
       line-height: 1.7;
     }
-
+ 
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -60,13 +60,13 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
-
+ 
     section {
       padding: 6rem 2rem;
       max-width: 720px;
       margin: 0 auto;
     }
-
+ 
     #hero {
       min-height: 100vh;
       display: flex;
@@ -76,7 +76,7 @@
       text-align: center;
       position: relative;
     }
-
+ 
     .hero-eyebrow {
       font-size: 0.78rem;
       color: var(--muted);
@@ -97,7 +97,7 @@
       animation: rise 0.7s 0.25s forwards;
     }
     h1 em { font-style: italic; color: var(--muted); }
-
+ 
     .hero-desc {
       font-size: 1rem;
       color: var(--muted);
@@ -134,7 +134,7 @@
       border: 1px solid var(--border);
     }
     .btn-outline:hover { border-color: var(--text); color: var(--text); }
-
+ 
     .hero-scroll {
       position: absolute;
       bottom: 2rem;
@@ -162,7 +162,7 @@
       0%, 100% { opacity: 0.3; }
       50% { opacity: 1; }
     }
-
+ 
     .section-header {
       display: flex;
       align-items: baseline;
@@ -178,7 +178,7 @@
       letter-spacing: -0.01em;
     }
     .section-num { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
-
+ 
     .about-text {
       font-size: 1.05rem;
       color: var(--muted);
@@ -187,7 +187,7 @@
     }
     .about-text p + p { margin-top: 1rem; }
     .about-text strong { color: var(--text); font-weight: 500; }
-
+ 
     .about-meta {
       display: flex;
       gap: 2rem;
@@ -207,7 +207,7 @@
     }
     .meta-link:hover { color: var(--accent); }
     .meta-link svg { width: 14px; height: 14px; }
-
+ 
     .skills-table { display: flex; flex-direction: column; }
     .skill-row {
       display: grid;
@@ -219,7 +219,7 @@
     .skill-row:first-child { border-top: 1px solid var(--border); }
     .skill-cat { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 2px; }
     .skill-items { font-size: 0.88rem; color: var(--text); font-weight: 300; line-height: 1.8; }
-
+ 
     .projects-list { display: flex; flex-direction: column; }
     .project-item {
       display: grid;
@@ -240,7 +240,7 @@
     .project-stack { margin-top: 0.6rem; font-size: 0.75rem; color: var(--muted); }
     .project-arrow { font-size: 1rem; color: var(--border); transition: color 0.2s; padding-top: 4px; }
     .project-item:hover .project-arrow { color: var(--text); }
-
+ 
     .exp-list { display: flex; flex-direction: column; }
     .exp-item {
       display: grid;
@@ -261,7 +261,7 @@
       line-height: 1.75;
     }
     .exp-bullets li + li { margin-top: 0.3rem; }
-
+ 
     #contact { text-align: center; padding-bottom: 8rem; }
     .contact-sub { font-size: 0.95rem; color: var(--muted); font-weight: 300; margin-bottom: 2rem; line-height: 1.7; }
     .contact-email {
@@ -279,7 +279,7 @@
     .contact-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; }
     .contact-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .contact-links a:hover { color: var(--text); }
-
+ 
     footer {
       border-top: 1px solid var(--border);
       padding: 1.5rem 2rem;
@@ -289,14 +289,48 @@
       margin: 0 auto;
     }
     footer p { font-size: 0.72rem; color: var(--muted); }
-
+ 
     @keyframes rise {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: none; }
     }
     .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .fade.visible { opacity: 1; transform: none; }
-
+ 
+    .research-list { display: flex; flex-direction: column; }
+    .research-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+      align-items: start;
+    }
+    .research-item:first-child { border-top: 1px solid var(--border); }
+    .research-item:hover { opacity: 0.55; }
+    .research-item:hover .project-arrow { color: var(--text); }
+    .research-type { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .research-title { font-family: var(--display); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .research-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
+    .research-desc p + p { margin-top: 0.5rem; }
+    .research-stack { margin-top: 0.6rem; font-size: 0.75rem; color: var(--muted); }
+    .research-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .research-link:hover { color: var(--accent); border-color: var(--accent); }
+ 
     @media (max-width: 600px) {
       .skill-row, .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
       .nav-links { display: none; }
@@ -305,18 +339,19 @@
   </style>
 </head>
 <body>
-
+ 
   <nav id="nav">
     <a href="#hero" class="nav-name">Joseph Joo</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-
+ 
   <section id="hero">
     <div class="hero-eyebrow">Software Engineer · ML & Data Science</div>
     <h1>Hi, I'm<br /><em>Joseph Joo.</em></h1>
@@ -330,7 +365,7 @@
       <span>Scroll</span>
     </div>
   </section>
-
+ 
   <section id="about">
     <div class="section-header fade">
       <span class="section-num">01</span>
@@ -338,7 +373,7 @@
     </div>
     <div class="about-text fade">
       <p>I'm a <strong>software, ML, and data engineer</strong> with experience building systems combining data, models, and real products. I care about writing code that's maintainable, shipping things that are observable, and solving problems that matter.</p>
-      <p>Currently interning at <strong>KCC Capital Partners.</strong> Previously at <strong>Semicon Bio </strong>. I'm studying <strong>Data Science</strong> at the <strong>University of California, Berkeley</strong>.</p>
+      <p>Recently graduated from <strong>UC Berkeley</strong> with a degree in <strong>Data Science</strong>. Previously interned at <strong>KCC Capital Partners</strong> and <strong>SemiconBio</strong>, working on ML systems across fintech and biotech.</p>
     </div>
     <div class="about-meta fade">
       <a href="https://github.com/josephhjoo" class="meta-link" target="_blank">
@@ -355,20 +390,20 @@
       </a>
     </div>
   </section>
-
+ 
   <section id="skills">
     <div class="section-header fade">
       <span class="section-num">02</span>
       <h2>Skills</h2>
     </div>
     <div class="skills-table fade">
-      <div class="skill-row"><div class="skill-cat">Languages</div><div class="skill-items">Python, Java, SQL, JavaScript, HTML</div></div>
+      <div class="skill-row"><div class="skill-cat">Languages</div><div class="skill-items">Python, Java, SQL, JavaScript, TypeScript, HTML</div></div>
       <div class="skill-row"><div class="skill-cat">Frameworks & Tools</div><div class="skill-items">Git, Tableau, Flask, MongoDB, TensorFlow, AWS (EC2, RDS, S3, Lambda), Plotly, PostgreSQL</div></div>
       <div class="skill-row"><div class="skill-cat">Data & ML</div><div class="skill-items">Machine Learning, Hidden Markov Models, Data Analysis, Data Engineering, Statistical Modeling</div></div>
       <div class="skill-row"><div class="skill-cat">Other</div><div class="skill-items">Agile/Scrum, Product Management, AI/LLM Integration</div></div>
     </div>
   </section>
-
+ 
   <section id="projects">
     <div class="section-header fade">
       <span class="section-num">03</span>
@@ -421,15 +456,39 @@
       </a>
     </div>
   </section>
-
-  <section id="experience">
+ 
+  <section id="research">
     <div class="section-header fade">
       <span class="section-num">04</span>
+      <h2>Research</h2>
+    </div>
+    <div class="projects-list fade">
+      <a href="/routelabs.pdf" class="project-item" target="_blank" rel="noopener">
+        <div>
+          <div class="project-type">Operations Research · Optimization · Applied ML</div>
+          <div class="project-name">LLM Routing Optimization - Two-Stage Stochastic MILP</div>
+          <ul class="exp-bullets">
+            <li>Formulated a two-stage stochastic mixed-integer program to optimize LLM pool selection and routing policy across 33 candidate models and 240 benchmark prompts, achieving 0.926 expected quality at $0.0018/prompt.</li>
+            <li>Modeled real-world uncertainty via Sample Average Approximation over the RouterBench dataset, analyzing robustness to distribution shift across four client-mix scenarios.</li>
+            <li>Demonstrated that stochastic routing dominates single-model baselines on every scenario tested, coming within 6 percentage points of a clairvoyant Oracle Router at a fraction of the cost.</li>
+          </ul>
+          <p class="project-desc" style="margin-top:0.75rem;">The core insight is that LLM routing is a two-stage decision under uncertainty: a platform like Cursor must commit to a model pool before seeing any user prompts, then route each prompt dynamically within that pool. A deterministic model optimized for a single prompt would miss this structure entirely. By framing Stage 1 as a here-and-now integer decision and Stage 2 as a wait-and-see continuous routing policy, the MILP captures the real tradeoff between pool diversity and cost.</p>
+          <p class="project-desc" style="margin-top:0.5rem;">One of the more counterintuitive findings is that expected cost is non-monotonic in pool size. At K=6 it actually increases relative to K=5, because the slack penalty incentivizes spending more on hard prompts once an additional model unlocks that path. This is the kind of behavior a per-prompt deterministic model would miss, and it's what made the stochastic formulation worth the added complexity.</p>
+          <div class="project-stack">Python · Pyomo · HiGHS · SAA · MILP · Stochastic Optimization</div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+    </div>
+  </section>
+ 
+  <section id="experience">
+    <div class="section-header fade">
+      <span class="section-num">05</span>
       <h2>Experience</h2>
     </div>
     <div class="exp-list fade">
       <div class="exp-item">
-        <div class="exp-period">Nov 2025<br />Present</div>
+        <div class="exp-period">Nov 2025<br />May 2026</div>
         <div>
           <div class="exp-company">KCC Capital Partners</div>
           <div class="exp-role">Data Science Associate</div>
@@ -469,25 +528,25 @@
       </div>
     </div>
   </section>
-
+ 
   <section id="contact">
     <div class="section-header fade" style="border: none; padding-bottom: 0; justify-content: center; margin-bottom: 1rem;">
       <h2>Get in touch</h2>
     </div>
-    <p class="contact-sub fade">Open to full-time roles in ML engineering and software engineering.<br />Happy to talk about interesting problems too.</p>
-    <a href="mailto:josephjoo@berkeley.edu" class="contact-email fade">josephjoo@berkeley.edu</a>
+    <p class="contact-sub fade">Open to full-time roles in ML/software engineering and data science.<br />Happy to talk about interesting problems too.</p>
+    <a href="mailto:josephjoo225@gmail.com" class="contact-email fade">josephjoo225@gmail.com</a>
     <div class="contact-links fade">
       <a href="https://github.com/josephhjoo" target="_blank">GitHub</a>
       <a href="https://linkedin.com/in/joseph-j-joo" target="_blank">LinkedIn</a>
       <a href="/resume.pdf">Resume</a>
     </div>
   </section>
-
+ 
   <footer>
     <p>Joseph Joo</p>
     <p>josephhjoo.github.io</p>
   </footer>
-
+ 
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -498,6 +557,7 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
   </script>
-
+ 
 </body>
 </html>
+ 

@@ -410,20 +410,16 @@
       <h2>Projects</h2>
     </div>
     <div class="projects-list fade">
-      <a href="https://github.com/josephhjoo/ma-deal-sourcing" class="project-item" target="_blank" rel="noopener">
+      <a href="https://dealrankr.com" class="project-item" target="_blank" rel="noopener">
         <div>
-          <div class="project-type">Data Science · Featured</div>
-          <div class="project-name">M&A Deal Sourcing Platform</div>
+          <div class="project-type">Data Science · Featured · Live</div>
+          <div class="project-name">DealRankr - M&A Deal Sourcing Platform</div>
           <ul class="exp-bullets">
-            <li>Built and deployed a full-stack acquisition screening platform on AWS (EC2/RDS/S3/Lambda), ingesting real
-              company financials from SEC EDGAR for 500+ public companies and scoring them against configurable deal
-              criteria using a weighted model and Random Forest classifier.</li>
-            <li>Integrated Claude API for automated deal memo generation with risk flag extraction and SEC filing transaction
-              history parsing, reducing manual research time by ~70%.</li>
-            <li>Built interactive dashboard with score breakdowns, drag-and-drop Kanban pipeline, CSV export in KCC Capital
-              Partners deliverable format, and direct links to SEC EDGAR filings.</li>
+            <li>Built and deployed a full-stack acquisition screening platform to production on AWS (EC2, RDS, S3) with nginx reverse proxy, SSL, and a custom domain; ingests real company financials from SEC EDGAR and scores targets against configurable deal mandates.</li>
+            <li>Engineered a blended scoring system combining a weighted rule-based model with a Random Forest classifier to rank acquisition targets by fit score across revenue, growth, EBITDA, geography, and industry dimensions.</li>
+            <li>Integrated Claude Haiku via Anthropic API to auto-generate structured deal memos with risk flag extraction; built a drag-and-drop Kanban pipeline board, PDF memo export via ReportLab, and CSV export for downstream analysis.</li>
           </ul>
-          <div class="project-stack">Python · AWS (EC2/RDS/S3/Lambda) · Scikit-learn · Claude API</div>
+          <div class="project-stack">Python · Flask · PostgreSQL · AWS (EC2/RDS/S3) · Scikit-learn · Anthropic API</div>
         </div>
         <div class="project-arrow">↗</div>
       </a>

@@ -397,7 +397,7 @@
       <h2>Skills</h2>
     </div>
     <div class="skills-table fade">
-      <div class="skill-row"><div class="skill-cat">Languages</div><div class="skill-items">Python, Java, SQL, JavaScript, TypeScript, HTML</div></div>
+      <div class="skill-row"><div class="skill-cat">Languages</div><div class="skill-items">Python, Java, SQL, JavaScript, HTML</div></div>
       <div class="skill-row"><div class="skill-cat">Frameworks & Tools</div><div class="skill-items">Git, Tableau, Flask, MongoDB, TensorFlow, AWS (EC2, RDS, S3, Lambda), Plotly, PostgreSQL</div></div>
       <div class="skill-row"><div class="skill-cat">Data & ML</div><div class="skill-items">Machine Learning, Hidden Markov Models, Data Analysis, Data Engineering, Statistical Modeling</div></div>
       <div class="skill-row"><div class="skill-cat">Other</div><div class="skill-items">Agile/Scrum, Product Management, AI/LLM Integration</div></div>
@@ -410,28 +410,46 @@
       <h2>Projects</h2>
     </div>
     <div class="projects-list fade">
-      <a href="https://dealrankr.com" class="project-item" target="_blank" rel="noopener">
+      <a href="https://github.com/josephhjoo/ma-deal-sourcing" class="project-item" target="_blank" rel="noopener">
         <div>
-          <div class="project-type">Data Science · Featured · Live</div>
-          <div class="project-name">DealRankr - M&A Deal Sourcing Platform</div>
+          <div class="project-type">Data Science · Featured</div>
+          <div class="project-name">M&A Deal Sourcing Platform</div>
           <ul class="exp-bullets">
-            <li>Built and deployed a full-stack acquisition screening platform to production on AWS (EC2, RDS, S3) with nginx reverse proxy, SSL, and a custom domain; ingests real company financials from SEC EDGAR and scores targets against configurable deal mandates.</li>
-            <li>Engineered a blended scoring system combining a weighted rule-based model with a Random Forest classifier to rank acquisition targets by fit score across revenue, growth, EBITDA, geography, and industry dimensions.</li>
-            <li>Integrated Claude Haiku via Anthropic API to auto-generate structured deal memos with risk flag extraction; built a drag-and-drop Kanban pipeline board, PDF memo export via ReportLab, and CSV export for downstream analysis.</li>
+            <li>Built and deployed a full-stack acquisition screening platform on AWS (EC2/RDS/S3/Lambda), ingesting real
+              company financials from SEC EDGAR for 500+ public companies and scoring them against configurable deal
+              criteria using a weighted model and Random Forest classifier.</li>
+            <li>Integrated Claude API for automated deal memo generation with risk flag extraction and SEC filing transaction
+              history parsing, reducing manual research time by ~70%.</li>
+            <li>Built interactive dashboard with score breakdowns, drag-and-drop Kanban pipeline, CSV export in KCC Capital
+              Partners deliverable format, and direct links to SEC EDGAR filings.</li>
           </ul>
-          <div class="project-stack">Python · Flask · PostgreSQL · AWS (EC2/RDS/S3) · Scikit-learn · Anthropic API</div>
+          <div class="project-stack">Python · AWS (EC2/RDS/S3/Lambda) · Scikit-learn · Claude API</div>
         </div>
         <div class="project-arrow">↗</div>
       </a>
-      <a href="https://spotify-playlist-engine.onrender.com" class="project-item" target="_blank" rel="noopener">
+      <a href="https://buyeriq-n7wb.onrender.com" class="project-item" target="_blank" rel="noopener">
         <div>
-          <div class="project-type">Full-Stack · Spotify API · Live</div>
+          <div class="project-type">AI Agent · M&A</div>
+          <div class="project-name">BuyerIQ - M&A Research Agent</div>
+          <ul class="exp-bullets">
+            <li>Built an AI agent that autonomously researches and ranks potential acquirers for sell-side M&A engagements, scoring each buyer 0 - 100 by source recency and verifiability.</li>
+            <li>Engineered a structured output pipeline using Claude Sonnet with web search, parsing responses into ranked buyer cards with rationale, contact details, and sourced URLs.</li>
+            <li>Deployed a full-stack Flask app with persistent search history and PDF/CSV export designed for M&A professionals.</li>
+          </ul>
+          <div class="project-stack">Python · Flask · Claude API · PostgreSQL</div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </a>
+      <a href="https://github.com/josephhjoo/spotify-project" class="project-item" target="_blank" rel="noopener">
+        <div>
+          <div class="project-type">Full-Stack · Spotify API</div>
           <div class="project-name">Spotify Playlist Engine</div>
           <ul class="exp-bullets">
-            <li>Built a KNN model trained on Spotify audio features (tempo, danceability, energy, valence) to generate personalized playlists, integrated end-to-end with the Spotify API and OAuth 2.0 authentication.</li>
-            <li>Deployed as a full-stack Flask application on Render with a complete feature extraction and inference pipeline from audio data to UI.</li>
+            <li>Engineered a KNN model trained on Spotify audio features (tempo, danceability, etc.) to generate personalized
+              playlists, integrated end-to-end with Spotify API and OAuth 2.0 authentication.</li>
+            <li>Delivered a fully deployable full-stack application by building feature extraction and inference to UI.</li>
           </ul>
-          <div class="project-stack">Python · Flask · Scikit-learn · Spotify API · OAuth 2.0</div>
+          <div class="project-stack">Python · Flask</div>
         </div>
         <div class="project-arrow">↗</div>
       </a>
@@ -461,14 +479,14 @@
       <a href="/routelabs.pdf" class="project-item" target="_blank" rel="noopener">
         <div>
           <div class="project-type">Operations Research · Optimization · Applied ML</div>
-          <div class="project-name">LLM Routing Optimization - Two-Stage Stochastic MILP</div>
+          <div class="project-name">LLM Routing Optimization — Two-Stage Stochastic MILP</div>
           <ul class="exp-bullets">
             <li>Formulated a two-stage stochastic mixed-integer program to optimize LLM pool selection and routing policy across 33 candidate models and 240 benchmark prompts, achieving 0.926 expected quality at $0.0018/prompt.</li>
             <li>Modeled real-world uncertainty via Sample Average Approximation over the RouterBench dataset, analyzing robustness to distribution shift across four client-mix scenarios.</li>
             <li>Demonstrated that stochastic routing dominates single-model baselines on every scenario tested, coming within 6 percentage points of a clairvoyant Oracle Router at a fraction of the cost.</li>
           </ul>
           <p class="project-desc" style="margin-top:0.75rem;">The core insight is that LLM routing is a two-stage decision under uncertainty: a platform like Cursor must commit to a model pool before seeing any user prompts, then route each prompt dynamically within that pool. A deterministic model optimized for a single prompt would miss this structure entirely. By framing Stage 1 as a here-and-now integer decision and Stage 2 as a wait-and-see continuous routing policy, the MILP captures the real tradeoff between pool diversity and cost.</p>
-          <p class="project-desc" style="margin-top:0.5rem;">One of the more counterintuitive findings is that expected cost is non-monotonic in pool size. At K=6 it actually increases relative to K=5, because the slack penalty incentivizes spending more on hard prompts once an additional model unlocks that path. This is the kind of behavior a per-prompt deterministic model would miss, and it's what made the stochastic formulation worth the added complexity.</p>
+          <p class="project-desc" style="margin-top:0.5rem;">One of the more counterintuitive findings: expected cost is non-monotonic in pool size. At K=6 it actually increases relative to K=5, because the slack penalty incentivizes spending more on hard prompts once an additional model unlocks that path. This is exactly the kind of behavior a per-prompt deterministic model would miss — and it's what made the stochastic formulation worth the added complexity.</p>
           <div class="project-stack">Python · Pyomo · HiGHS · SAA · MILP · Stochastic Optimization</div>
         </div>
         <div class="project-arrow">↗</div>
@@ -528,8 +546,8 @@
     <div class="section-header fade" style="border: none; padding-bottom: 0; justify-content: center; margin-bottom: 1rem;">
       <h2>Get in touch</h2>
     </div>
-    <p class="contact-sub fade">Open to full-time roles in ML/software engineering and data science.<br />Happy to talk about interesting problems too.</p>
-    <a href="mailto:josephjoo225@gmail.com" class="contact-email fade">josephjoo225@gmail.com</a>
+    <p class="contact-sub fade">Open to full-time roles in ML engineering and software engineering.<br />Happy to talk about interesting problems too.</p>
+    <a href="mailto:josephjoo@berkeley.edu" class="contact-email fade">josephjoo@berkeley.edu</a>
     <div class="contact-links fade">
       <a href="https://github.com/josephhjoo" target="_blank">GitHub</a>
       <a href="https://linkedin.com/in/joseph-j-joo" target="_blank">LinkedIn</a>

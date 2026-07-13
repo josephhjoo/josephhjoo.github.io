@@ -410,21 +410,20 @@
       <h2>Projects</h2>
     </div>
     <div class="projects-list fade">
-      <a href="https://youtu.be/Kn6ZQ2aWMQM" class="project-item" target="_blank" rel="noopener">
+      <a href="https://cashewcampus.com" class="project-item" target="_blank" rel="noopener">
         <div>
           <div class="project-type">Full-Stack · Marketplace · Featured</div>
-          <div class="project-name">Roost - Verified-Student Sublet Marketplace</div>
+          <div class="project-name">Cashew - Verified-Student Marketplace for Used Goods</div>
           <ul class="exp-bullets">
-            <li>Built and deployed a two-sided sublet marketplace for college students end-to-end (Next.js, TypeScript, Supabase/PostgreSQL, Vercel), with .edu-gated passwordless auth, an Airbnb-style listings feed, a Zillow-style map view, and real-time messaging.</li>
-            <li>Enforced all authorization at the database layer via PostgreSQL Row-Level Security, using SECURITY DEFINER functions for privileged operations like host-only save counts and throttled cross-user email notifications.</li>
-            <li>Engineered the full marketplace loop: multi-photo upload to object storage, address geocoding with approximate-location privacy, date-range overlap search with a relaxed-match fallback, and an inquiry flow that threads into deduplicated real-time conversations.</li>
-            <li>Instrumented a complete conversion funnel with PostHog; launching at UCSD and SDSU.</li>
+            <li>Founded, built, and deployed a verified-student marketplace end-to-end (Next.js, TypeScript, Supabase/PostgreSQL, Vercel): schema design and migrations, .edu-gated auth across three sign-in paths, real-time messaging over Postgres channels, a masonry item feed, and an admin console.</li>
+            <li>Engineered authorization entirely at the database layer with PostgreSQL Row-Level Security as the sole access-control layer, isolating privileged cross-user operations (notification throttling, save counts, listing claims) into SECURITY DEFINER functions to minimize the elevated-privilege surface.</li>
+            <li>Built an admin console for trust and safety: a moderation queue for reported listings, listing takedown and account controls, and admin authorization enforced redundantly across independent app and database layers so a bypassed frontend cannot escalate privileges; shipped transactional email with custom-domain DKIM/SPF authentication.</li>
+            <li>Lead a team of three interns (two marketing, one software engineering), authoring the technical specs they build against and the go-to-market plan for a campus launch.</li>
           </ul>
-          <p class="project-desc" style="margin-top:0.75rem;">Finding a sublet usually means digging through chaotic Facebook groups full of scams and stale listings. Roost is a cleaner, verified-students-only alternative: every user signs in with a .edu email, listings are browsable by campus as a feed or a map, and students connect through built-in messaging without exchanging personal contact info until they choose to.</p>
-          <p class="project-desc" style="margin-top:0.5rem;">The most interesting engineering challenge was authorization without a traditional backend. Because the client talks directly to the database, every access rule lives in PostgreSQL Row-Level Security policies rather than application code, and privileged actions that cross user boundaries run through SECURITY DEFINER functions so sensitive data is never exposed. Designing this correctly, including debugging a case where a trigger's write was silently blocked by RLS, reframed authorization for me as a database concern, not just an app-layer one.</p>
-          <span class="research-link">Watch demo ↗</span>
-          <span class="research-link" style="margin-left:1rem;">roostsublets.com</span>
-          <div class="project-stack">Next.js · TypeScript · Supabase (PostgreSQL) · Vercel · Leaflet · PostHog</div>
+          <p class="project-desc" style="margin-top:0.75rem;">Selling a mini-fridge at the end of a term usually means posting into a chaotic Facebook group and meeting a stranger from across the city. Cashew is a verified-students-only alternative: every user signs in with a .edu email, listings are browsable by campus in a Pinterest-style feed, and buyers and sellers coordinate through built-in messaging before meeting somewhere public on campus. The wedge is trust, and it's the one thing a general-purpose marketplace structurally cannot copy.</p>
+          <p class="project-desc" style="margin-top:0.5rem;">The hardest engineering problem was authorization without a backend. Because the browser talks directly to Postgres, there is no app-layer place to put access rules, so every one lives in Row-Level Security policies, and any operation that crosses a user boundary (notifying the other party in a conversation, counting saves on someone else's listing) runs through a SECURITY DEFINER function rather than a service-role key in application code. Admin authorization is deliberately enforced twice, once in the app and once in a database function, so a bypassed frontend still cannot escalate privileges. Building it this way meant debugging a class of bug that doesn't exist in a conventional stack: a query that silently returns nothing because a policy, not a bug, is hiding the row.</p>
+          <span class="research-link">cashewcampus.com ↗</span>
+          <div class="project-stack">Next.js · TypeScript · Supabase (PostgreSQL) · Vercel · PostHog · Resend</div>
         </div>
         <div class="project-arrow">↗</div>
       </a>
